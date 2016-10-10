@@ -31,8 +31,20 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
-        }, 0);
+        }, 0);//最后一个参数是切换指示器，0和1
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mAdView.pushImageCycle();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAdView.startImageCycle();
     }
 }
