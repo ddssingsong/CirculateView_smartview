@@ -75,10 +75,10 @@ public class ImageCycleView extends LinearLayout {
         mContext = context;
         LayoutInflater.from(context).inflate(R.layout.ad_cycle_view, this);
         mAdvPager = (ViewPager) findViewById(R.id.adv_pager);
-        mAdvPager.setOnPageChangeListener(new GuidePageChangeListener());
+        mAdvPager.addOnPageChangeListener(new GuidePageChangeListener());
+
         // 滚动图片右下指示器视
         mGroup = (ViewGroup) findViewById(R.id.viewGroup);
-
         viewGroup2 = (TextView) findViewById(R.id.viewGroup2);
     }
 
@@ -179,7 +179,7 @@ public class ImageCycleView extends LinearLayout {
         public void run() {
             if (mImageViews != null) {
                 mAdvPager.setCurrentItem(mAdvPager.getCurrentItem() + 1);
-                if (!isStop) { // if isStop=true //当你�?出后 要把这个给停下来 不然 这个�?直存�?
+                if (!isStop) { // if isStop=true //当你退出后 要把这个给停下来 不然 这个将一直存在
                     // 就一直在后台循环
                     mHandler.postDelayed(mImageTimerTask, 3000);
                 }
@@ -302,9 +302,9 @@ public class ImageCycleView extends LinearLayout {
 
     }
 
-    public static interface ImageCycleViewListener {
+    public interface ImageCycleViewListener {
 
-        public void onImageClick(int position, View imageView);
+        void onImageClick(int position, View imageView);
     }
 
 }
